@@ -1,5 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.Oss" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <!-- Base application theme. -->
+    <style name="Theme.ManHole.Start" parent="Theme.MaterialComponents.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
+    <style name="Theme.ManHole" parent="Theme.MaterialComponents.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppTheme_NoActionBarApp_LAUNCHER" parent="@style/Theme.ManHole">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="NonTranslucentTheme" parent="Theme.ManHole">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+    <style name="FullTheme" parent="Theme.ManHole">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:showDividers">none</item>
+        <item name="contentInsetStart">0dp</item>
+        <item name="android:contentInsetStart">0dp</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
+
+    <!-- EditText -->
+    <style name="GomsEditText" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textCursorDrawable">@drawable/ui_shape_edittext_cursor_color</item>
+        <item name="android:height">40dp</item>
+    </style>
+
+    <style name="CollapsingTitleStyle">
+        <item name="android:textColor">#FF9800</item>
+    </style>
+
+    <style name="ExpandedTitleStyle">
+        <item name="android:textColor">#D500F9</item>
+    </style>
+    <style name="DialogAnimationPopupStyle">
+        <item name="android:windowEnterAnimation">@anim/popup_bottom_open</item>
+        <item name="android:windowExitAnimation">@anim/popup_bottom_close</item>
+    </style>
+    <style name="GomsSlider" parent="@style/Widget.MaterialComponents.Slider">
+        <item name="labelStyle">@style/Goms_SliderTooltip</item>
+        <item name="tickMarkTint">@color/white</item>
+        <item name="tickMark">@color/white</item>
+        <!--        <item name="trackColorActive">#ff4500</item>-->
+        <!--        <item name="trackColorInactive">#fbb999</item>-->
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Slider</item>
+    </style>
+
+    <style name="Goms_SliderTooltip" parent="Widget.MaterialComponents.Tooltip">
+        <item name="backgroundTint">@color/pink</item>
+    </style>
+
+    <style name="ThemeOverlay.Slider" parent="">
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorOnPrimary">@color/purple_700</item>
+        <item name="colorOnSurface">@color/purple_200</item>
+    </style>
+
+
+    <style name="WD_Slider" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="tickMarkTint">@color/white</item>
+        <item name="tickMark">@color/white</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Slider</item>
+    </style>
+
 </resources>

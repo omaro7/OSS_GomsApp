@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">oss</string>
+    <string name="app_name">공개SW 개발자대회</string>
+    <string name="app_full_name_2line">공개SW 개발자대회 \nGomsApp</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+        AIzaSyCrDzZcmcE26LS13a_7Fw0k6Efb43UjpRY
+    </string>
 </resources>

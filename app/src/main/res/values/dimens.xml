@@ -1,0 +1,16 @@
+<resources>
+
+    <dimen name="toolbartitle_size">20dp</dimen>
+    <dimen name="field_list_title">16dp</dimen>
+    <dimen name="field_list_title_s">14dp</dimen>
+
+    <dimen name="btn_bottom_height">52dp</dimen>
+    <dimen name="field_list_height">32dp</dimen>
+    <dimen name="field_detail_list_height">24dp</dimen>
+
+
+    <dimen name="field_detail_list_img">68dp</dimen>
+
+
+
+</resources>
