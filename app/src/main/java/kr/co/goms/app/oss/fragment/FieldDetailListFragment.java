@@ -439,8 +439,8 @@ public class FieldDetailListFragment extends Fragment  implements View.OnClickLi
             });
         }
 
-        DialogManager.I().setTitle("엑셀 생성")
-                .setMessage("엑셀 생성을 완료했습니다.")
+        DialogManager.I().setTitle("보고서 생성")
+                .setMessage("보고서 생성을 완료했습니다.")
                 .setShowTitle(true)
                 .setShowMessage(true)
                 .setNegativeBtnName("")

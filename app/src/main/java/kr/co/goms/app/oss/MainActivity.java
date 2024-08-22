@@ -1,19 +1,24 @@
 package kr.co.goms.app.oss;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import kr.co.goms.app.oss.common.ManHolePrefs;
+import kr.co.goms.app.oss.fragment.FieldDetailFormFragment;
 import kr.co.goms.app.oss.fragment.GroupListFragment;
 import kr.co.goms.module.common.activity.CustomActivity;
 import kr.co.goms.module.common.base.BaseBean;
@@ -63,6 +68,37 @@ public class MainActivity extends CustomActivity implements View.OnClickListener
     }
 
     private void setInitLauncher(){
+
+        mCameraLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+
+                        Intent data = result.getData();
+                        if (data != null) {
+                            // Extract the data from the Intent
+                            // For example, if you are expecting a String extra with key "data_key"
+                            String receivedData = data.getStringExtra("data_key");
+                            // Do something with the received data
+                            Log.d(LOG_TAG, "data_key : " + receivedData);
+                        }
+
+                        FieldDetailFormFragment fieldDetailFormFragment = (FieldDetailFormFragment) getSupportFragmentManager().findFragmentByTag("fieldDetail");
+                        fieldDetailFormFragment.setCameraPhoto();
+                    }
+                });
+
+        mAlbumLauncher = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                new ActivityResultCallback<Uri>() {
+                    @Override
+                    public void onActivityResult(Uri selectedImageUri) {
+                        if (selectedImageUri != null) {
+                            FieldDetailFormFragment fieldDetailFormFragment = (FieldDetailFormFragment) getSupportFragmentManager().findFragmentByTag("fieldDetail");
+                            fieldDetailFormFragment.setAlbumPhoto(selectedImageUri);
+                        }
+                    }
+                });
 
     }
 

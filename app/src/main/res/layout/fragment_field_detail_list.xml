@@ -65,7 +65,7 @@
                             android:layout_marginRight="16dp"
                             android:background="@drawable/bg_round_bottomdialog_rightbtn"
                             android:gravity="center"
-                            android:text="엑셀생성"
+                            android:text="보고서생성"
                             android:textColor="#ffffff"
                             android:textSize="14dp" />
                     </RelativeLayout>
