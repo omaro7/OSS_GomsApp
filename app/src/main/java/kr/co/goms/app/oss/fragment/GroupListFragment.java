@@ -265,8 +265,12 @@ public class GroupListFragment extends Fragment  implements View.OnClickListener
         }else if(id == R.id.btn_ok) {
                 goDialog();
         }else if(id == R.id.iv_setting) {
-                Intent intent = new Intent(getActivity(), SettingActivity.class);
-                startActivity(intent);
+
+            //Intent intent = new Intent(getActivity(), SettingActivity.class);
+            //startActivity(intent);
+
+            ((MainActivity)getActivity()).changeFragment(FileListFragment.getFragment(), "fileList");
+
         }
     }
 
