@@ -54,7 +54,7 @@
                             android:layout_gravity="center_vertical"
                             android:fontFamily="@font/spoqahansansneobold"
                             android:gravity="center"
-                            android:text="맨홀현황조사"
+                            android:text="현장조사"
                             android:textColor="@color/text_primary"
                             android:textSize="20dp" />
 
@@ -120,7 +120,7 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/spoqahansansneomedium"
                                 android:letterSpacing="-0.03"
-                                android:text="*맨홀번호"
+                                android:text="*조사번호"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -149,7 +149,7 @@
                                     android:layout_marginBottom="1dp"
                                     android:fontFamily="@font/spoqahansansneoregular"
                                     android:gravity="left|center_vertical"
-                                    android:hint="맨홀번호를 넣어주세요"
+                                    android:hint="조사번호를 넣어주세요"
                                     android:text=""
                                     android:textColor="@color/text_primary_gray"
                                     android:textColorHint="@color/text_primary_gray"
@@ -335,7 +335,7 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/spoqahansansneomedium"
                                 android:letterSpacing="-0.03"
-                                android:text="맨홀깊이"
+                                android:text="깊이"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -387,7 +387,7 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/spoqahansansneomedium"
                                 android:letterSpacing="-0.03"
-                                android:text="유입관경"
+                                android:text="너비"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -446,7 +446,7 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/spoqahansansneomedium"
                                 android:letterSpacing="-0.03"
-                                android:text="유출관경"
+                                android:text="관경"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -498,7 +498,7 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/spoqahansansneomedium"
                                 android:letterSpacing="-0.03"
-                                android:text="배제방식"
+                                android:text="방식"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -536,7 +536,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="6dp"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -741,7 +741,7 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/spoqahansansneomedium"
                                 android:letterSpacing="-0.03"
-                                android:text="맨홀뚜껑 파손"
+                                android:text="파손"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -814,7 +814,7 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/spoqahansansneomedium"
                                 android:letterSpacing="-0.03"
-                                android:text="맨홀뚜껑 균열"
+                                android:text="균열"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -871,7 +871,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <!--맨홀뚜껑 유입수-->
                         <LinearLayout
                             android:layout_width="0dp"
@@ -886,7 +887,7 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/spoqahansansneomedium"
                                 android:letterSpacing="-0.03"
-                                android:text="맨홀뚜껑 유입수"
+                                android:text="뚜껑 유입수"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -903,7 +904,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="16dp"
                             android:layout_weight="0.2">
-                            <!--맨홀뚜껑 유입수-->
+                            <!--뚜껑 유입수-->
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="48dp"
@@ -926,14 +927,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="6dp"
-                        android:background="@color/gray_e" />
-                    <!--맨홀주변부 파손여부-->
+                        android:background="@color/gray_e"
+                        android:visibility="gone"/>
+                    <!--주변부 파손여부-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
-                        <!--맨홀주변부파손-->
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+                        <!--주변부파손-->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -947,7 +950,7 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/spoqahansansneomedium"
                                 android:letterSpacing="-0.03"
-                                android:text="맨홀주변부 파손"
+                                android:text="주변부 파손"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -1000,13 +1003,14 @@
                         </LinearLayout>
                     </LinearLayout>
 
-                    <!--맨홀주변부 균열여부-->
+                    <!--주변부 균열여부-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
-                        <!--맨홀주변부균열-->
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+                        <!--주변부균열-->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -1020,7 +1024,7 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/spoqahansansneomedium"
                                 android:letterSpacing="-0.03"
-                                android:text="맨홀주변부 균열"
+                                android:text="주변부 균열"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -1074,13 +1078,14 @@
                         </LinearLayout>
                     </LinearLayout>
 
-                    <!--맨홀주변부 유입/침입수-->
+                    <!--주변부 유입/침입수-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
-                        <!--맨홀주변부 유입/침입수-->
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+                        <!--주변부 유입/침입수-->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -1094,7 +1099,7 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/spoqahansansneomedium"
                                 android:letterSpacing="-0.03"
-                                android:text="맨홀주변부 침입수"
+                                android:text="주변부 침입수"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -1103,7 +1108,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.2">
-                            <!--맨홀주변 유입수 -->
+                            <!--주변 유입수 -->
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="48dp"
@@ -1149,14 +1154,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="6dp"
-                        android:background="@color/gray_e" />
-                    <!--맨홀내부 파손여부-->
+                        android:background="@color/gray_e"
+                        android:visibility="gone" />
+                    <!--내부 파손여부-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
-                        <!--맨홀주변부파손-->
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+                        <!--주변부파손-->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -1170,7 +1177,7 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/spoqahansansneomedium"
                                 android:letterSpacing="-0.03"
-                                android:text="맨홀내부 파손"
+                                android:text="내부 파손"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -1222,13 +1229,14 @@
                         </LinearLayout>
                     </LinearLayout>
 
-                    <!--맨홀내부 균열여부-->
+                    <!--내부 균열여부-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
-                        <!--맨홀내부균열-->
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+                        <!--내부균열-->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -1242,7 +1250,7 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/spoqahansansneomedium"
                                 android:letterSpacing="-0.03"
-                                android:text="맨홀내부 균열"
+                                android:text="내부 균열"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -1295,13 +1303,14 @@
                         </LinearLayout>
                     </LinearLayout>
 
-                    <!--맨홀내부 침입수-->
+                    <!--내부 침입수-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
-                        <!--맨홀내부 침입수-->
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+                        <!--내부 침입수-->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -1315,7 +1324,7 @@
                                 android:layout_centerVertical="true"
                                 android:fontFamily="@font/spoqahansansneomedium"
                                 android:letterSpacing="-0.03"
-                                android:text="맨홀내부 침입수"
+                                android:text="내부 침입수"
                                 android:textColor="@color/text_primary"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -1355,13 +1364,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="6dp"
-                        android:background="@color/gray_e" />
+                        android:background="@color/gray_e"
+                        android:visibility="gone"/>
                     <!--관로접합부 파손여부-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <!--관로접합부 파손-->
                         <LinearLayout
                             android:layout_width="0dp"
@@ -1436,7 +1447,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <!--관로접합부 균열-->
                         <LinearLayout
                             android:layout_width="0dp"
@@ -1511,7 +1523,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <!--관로접합부 침입수-->
                         <LinearLayout
                             android:layout_width="0dp"
@@ -1567,13 +1580,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="6dp"
-                        android:background="@color/gray_e" />
+                        android:background="@color/gray_e"
+                        android:visibility="gone"/>
                     <!--사다리, 인버트 유/무-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <!--사다리-->
                         <LinearLayout
                             android:layout_width="0dp"
@@ -1660,7 +1675,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <!--악취발생-->
                         <LinearLayout
                             android:layout_width="0dp"
@@ -1749,7 +1765,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <!--사다리 손상 -->
                         <LinearLayout
                             android:layout_width="0dp"
@@ -1836,7 +1853,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <!--폐유부착 -->
                         <LinearLayout
                             android:layout_width="0dp"
@@ -1924,7 +1942,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <!--뿌리침입 -->
                         <LinearLayout
                             android:layout_width="0dp"
@@ -1983,13 +2002,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="6dp"
-                        android:background="@color/gray_e" />
+                        android:background="@color/gray_e"
+                        android:visibility="gone" />
                     <!--블록이음부단차-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <!--블록이음부단차-->
                         <LinearLayout
                             android:layout_width="0dp"
@@ -2081,7 +2102,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <!--블록이음부이탈-->
                         <LinearLayout
                             android:layout_width="0dp"
@@ -2173,7 +2195,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <!--매몰-->
                         <LinearLayout
                             android:layout_width="0dp"
@@ -2248,64 +2271,7 @@
                         android:layout_height="1dp"
                         android:layout_marginTop="6dp"
                         android:background="@color/gray_e" />
-                    <!--특이사항-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_centerVertical="true"
-                            android:fontFamily="@font/spoqahansansneomedium"
-                            android:letterSpacing="-0.03"
-                            android:text="특이사항"
-                            android:textColor="@color/text_primary"
-                            android:textSize="16dp" />
-                    </LinearLayout>
-                    <!--특이사항 내용-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:background="@drawable/rounded_border_gray"
-                            android:orientation="horizontal">
-
-                            <EditText
-                                android:id="@+id/et_mh_remark"
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="6dp"
-                                android:layout_marginTop="1dp"
-                                android:layout_marginRight="6dp"
-                                android:layout_marginBottom="1dp"
-                                android:fontFamily="@font/spoqahansansneoregular"
-                                android:gravity="left|top"
-                                android:hint="특이사항을 넣어주세요"
-                                android:minLines="3"
-                                android:text=""
-                                android:textColor="@color/text_primary_gray"
-                                android:textColorHint="@color/text_primary_gray"
-                                android:textSize="16dp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="6dp"
-                        android:background="@color/gray_e" />
                     <!--이미지 추가-->
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -2319,7 +2285,7 @@
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/spoqahansansneomedium"
                             android:letterSpacing="-0.03"
-                            android:text="사진대지"
+                            android:text="현장 사진"
                             android:textColor="@color/text_primary"
                             android:textSize="16dp" />
                     </LinearLayout>
@@ -2386,7 +2352,7 @@
                                             android:layout_gravity="center"
                                             android:fontFamily="@font/spoqahansansneomedium"
                                             android:letterSpacing="-0.03"
-                                            android:text="맨홀 전경"
+                                            android:text=" 전경"
                                             android:textColor="@color/text_primary"
                                             android:textSize="16dp" />
                                     </LinearLayout>
@@ -2447,7 +2413,7 @@
                                             android:layout_gravity="center"
                                             android:fontFamily="@font/spoqahansansneomedium"
                                             android:letterSpacing="-0.03"
-                                            android:text="맨홀 외부"
+                                            android:text=" 외부"
                                             android:textColor="@color/text_primary"
                                             android:textSize="16dp" />
                                     </LinearLayout>
@@ -2512,7 +2478,7 @@
                                             android:layout_gravity="center"
                                             android:fontFamily="@font/spoqahansansneomedium"
                                             android:letterSpacing="-0.03"
-                                            android:text="맨홀 내부"
+                                            android:text=" 내부"
                                             android:textColor="@color/text_primary"
                                             android:textSize="16dp" />
                                     </LinearLayout>
@@ -2586,7 +2552,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -2603,7 +2570,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
                         <!-- 1행 -->
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -2682,18 +2650,77 @@
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
-
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="6dp"
                         android:background="@color/gray_e" />
-                    <!--지역분구-->
+                    <!--특이사항-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/spoqahansansneomedium"
+                            android:letterSpacing="-0.03"
+                            android:text="특이사항"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                    <!--특이사항 내용-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/rounded_border_gray"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/et_mh_remark"
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="6dp"
+                                android:layout_marginTop="1dp"
+                                android:layout_marginRight="6dp"
+                                android:layout_marginBottom="1dp"
+                                android:fontFamily="@font/spoqahansansneoregular"
+                                android:gravity="left|top"
+                                android:hint="특이사항을 넣어주세요"
+                                android:minLines="3"
+                                android:text=""
+                                android:textColor="@color/text_primary_gray"
+                                android:textColorHint="@color/text_primary_gray"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@color/gray_e"
+                        android:visibility="gone" />
+                    <!--지역분구-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -2710,7 +2737,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <!--시점-->
                         <LinearLayout
                             android:layout_width="0dp"
@@ -2818,7 +2846,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <!--관종-->
                         <LinearLayout
                             android:layout_width="0dp"
@@ -2926,7 +2955,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <!--연장-->
                         <LinearLayout
                             android:layout_width="0dp"

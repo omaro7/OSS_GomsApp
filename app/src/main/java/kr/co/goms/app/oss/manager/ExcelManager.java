@@ -60,7 +60,7 @@ public class ExcelManager {
     static Activity mActivity;
     HSSFWorkbook mWorkbook;
 
-    HSSFSheet mSheet;           //맨홀조사야장
+    HSSFSheet mSheet;           //현장조사야장
     HSSFCellStyle mHSSFCellStyleMainTitle;           //셀스타일
     HSSFCellStyle mHSSFCellStyleBorderRight;//셀스타일-border right
     HSSFCellStyle mHSSFCellStyleBorderLeftRight;//셀스타일-border left, right
@@ -86,8 +86,8 @@ public class ExcelManager {
         VALUE((short)360),
         DIV((short)140),    //간격 높이
         EXTENTION((short) 400),//연장집계표 행 높이
-        REPORT_ROW((short) 400),//맨홀조사야장 행 높이
-        BLOCK_ROW((short) 300),//맨홀조사야장 > 블록 행 높이
+        REPORT_ROW((short) 400),//현장조사야장 행 높이
+        BLOCK_ROW((short) 300),//현장조사야장 > 블록 행 높이
         ;
 
         short size;
@@ -110,16 +110,16 @@ public class ExcelManager {
     }
 
     enum CELL_STYLE {
-        MAIN_TITLE(CELL_TYPE_BG.N, "맨홀 조사 야장", 0, 0, 0, 0, 0, 19, HEIGHT_SIZE.MAIN.size, (short) 400, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_DOUBLE),
+        MAIN_TITLE(CELL_TYPE_BG.N, "현장 조사 야장", 0, 0, 0, 0, 0, 19, HEIGHT_SIZE.MAIN.size, (short) 400, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_DOUBLE),
         DIV_1(CELL_TYPE_BG.N, "", 1, 0, 1, 1, 0, 19, (short) 10, (short) 0, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, false, U_NONE),
         REPORTER_SPACE(CELL_TYPE_BG.N,"", 2, 0, 2, 2, 0, 14, HEIGHT_SIZE.TITLE.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         REPORTER(CELL_TYPE_BG.N,"조사자", 2, 15, 2, 2, 15, 19, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         HEAD_TITLE_NO(CELL_TYPE_BG.Y,"NO.", 3, 0, 3, 3, 0, 0, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         HEAD_TITLE_MH_LOCAL(CELL_TYPE_BG.Y,"처리구역", 3, 1, 3, 3, 1, 2, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         HEAD_TITLE_MH_DRAINAGE(CELL_TYPE_BG.Y,"배제방식", 3, 3, 3, 3, 3, 4, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        HEAD_TITLE_MH_NUM(CELL_TYPE_BG.Y,"맨홀번호", 3, 5, 3, 3, 5, 7, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        HEAD_TITLE_MH_NUM(CELL_TYPE_BG.Y,"현장번호", 3, 5, 3, 3, 5, 7, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         HEAD_TITLE_MH_STANDARD(CELL_TYPE_BG.Y,"규격", 3, 8, 3, 3, 8, 9, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        HEAD_TITLE_MH_DEPTH(CELL_TYPE_BG.Y,"맨홀깊이(m)", 3, 10, 3, 3, 10, 11, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        HEAD_TITLE_MH_DEPTH(CELL_TYPE_BG.Y,"현장깊이(m)", 3, 10, 3, 3, 10, 11, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         HEAD_TITLE_MH_LAT(CELL_TYPE_BG.Y,"GPS위도", 3, 12, 3, 3, 12, 14, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         HEAD_TITLE_MH_LNG(CELL_TYPE_BG.Y,"GPS경도", 3, 15, 3, 3, 15, 17, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         HEAD_TITLE_MH_DATE(CELL_TYPE_BG.Y,"조사일시", 3, 18, 3, 3, 18, 19, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
@@ -137,7 +137,7 @@ public class ExcelManager {
         HEAD_TITLE_MH_INSPECTION(CELL_TYPE_BG.Y, "점검내용", 5, 0, 5, 5, 0, 9, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         HEAD_TITLE_MH_CAD(CELL_TYPE_BG.Y, "도면", 5, 10, 5, 5, 10, 19, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
 
-        HEAD_TITLE_MH_LID(CELL_TYPE_BG.Y,"맨홀뚜껑", 6, 0, 6, 6, 0, 2, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        HEAD_TITLE_MH_LID(CELL_TYPE_BG.Y,"현장뚜껑", 6, 0, 6, 6, 0, 2, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         HEAD_TITLE_MH_LIB_DAMAGE(CELL_TYPE_BG.N,"파손", 6, 3, 6, 6, 3, 3, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         VALUE_TITLE_MH_LIB_DAMAGE(CELL_TYPE_BG.N,"", 6, 4, 6, 6, 4, 4, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, false, U_NONE),
         HEAD_TITLE_MH_LIB_CRACK(CELL_TYPE_BG.N,"균열", 6, 5, 6, 6, 5, 6, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
@@ -145,7 +145,7 @@ public class ExcelManager {
         HEAD_TITLE_MH_LIB_WATER(CELL_TYPE_BG.Y,"유입수", 6, 8, 6, 6, 8, 8, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         VALUE_TITLE_MH_LIB_WATER(CELL_TYPE_BG.N,"", 6, 9, 6, 6, 9, 9, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, false, U_NONE),
         VALUE_TITLE_MH_CAD(CELL_TYPE_BG.N,"", 6, 10, 6, 14, 10, 19, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, false, U_NONE),
-        HEAD_TITLE_MH_OUTER(CELL_TYPE_BG.Y,"맨홀주변부", 7, 0, 7, 7, 0, 2, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        HEAD_TITLE_MH_OUTER(CELL_TYPE_BG.Y,"현장주변부", 7, 0, 7, 7, 0, 2, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         HEAD_TITLE_MH_OUTER_DAMAGE(CELL_TYPE_BG.N,"파손", 7, 3, 7, 7, 3, 3, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         VALUE_TITLE_MH_OUTER_DAMAGE(CELL_TYPE_BG.N,"", 7, 4, 7, 7, 4, 4, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, false, U_NONE),
         HEAD_TITLE_MH_OUTER_CRACK(CELL_TYPE_BG.N,"균열", 7, 5, 7, 7, 5, 6, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
@@ -153,7 +153,7 @@ public class ExcelManager {
         HEAD_TITLE_MH_OUTER_WATER(CELL_TYPE_BG.Y,"침입수등급(대중소)", 7, 8, 7, 9, 8, 8, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         VALUE_TITLE_MH_OUTER_WATER(CELL_TYPE_BG.N,"", 7, 9, 7, 7, 9, 9, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, false, U_NONE),
 
-        HEAD_TITLE_MH_INNER(CELL_TYPE_BG.Y,"맨홀내부", 8, 0, 8, 8, 0, 2, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        HEAD_TITLE_MH_INNER(CELL_TYPE_BG.Y,"현장내부", 8, 0, 8, 8, 0, 2, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         HEAD_TITLE_MH_INNER_DAMAGE(CELL_TYPE_BG.N,"파손", 8, 3, 8, 8, 3, 3, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         VALUE_TITLE_MH_INNER_DAMAGE(CELL_TYPE_BG.N,"", 8, 4, 8, 8, 4, 4, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, false, U_NONE),
         HEAD_TITLE_MH_INNER_CRACK(CELL_TYPE_BG.N,"균열", 8, 5, 8, 8, 5, 6, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
@@ -222,11 +222,11 @@ public class ExcelManager {
         VALUE_TITLE_PHOTO_OUTER_IMG_ELSE(CELL_TYPE_BG.N,"", 17, 10, 17, 24, 10, 19, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
 
 
-        HEAD_TITLE_PHOTO_AROUND(CELL_TYPE_BG.Y,"맨홀전경", 29, 0, 29, 29, 0, 9, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        HEAD_TITLE_PHOTO_OUTER(CELL_TYPE_BG.Y,"맨홀외부", 29, 10, 29, 29, 10, 19, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        HEAD_TITLE_PHOTO_AROUND(CELL_TYPE_BG.Y,"현장전경", 29, 0, 29, 29, 0, 9, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        HEAD_TITLE_PHOTO_OUTER(CELL_TYPE_BG.Y,"현장외부", 29, 10, 29, 29, 10, 19, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
 
-        HEAD_TITLE_PHOTO_AROUND_ELSE(CELL_TYPE_BG.Y,"맨홀전경", 25, 0, 25, 25, 0, 9, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        HEAD_TITLE_PHOTO_OUTER_ELSE(CELL_TYPE_BG.Y,"맨홀외부", 25, 10, 25, 25, 10, 19, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        HEAD_TITLE_PHOTO_AROUND_ELSE(CELL_TYPE_BG.Y,"현장전경", 25, 0, 25, 25, 0, 9, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        HEAD_TITLE_PHOTO_OUTER_ELSE(CELL_TYPE_BG.Y,"현장외부", 25, 10, 25, 25, 10, 19, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
 
 
         VALUE_TITLE_PHOTO_INNER_IMG(CELL_TYPE_BG.N,"", 30, 0, 30, 37, 0, 9, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
@@ -235,10 +235,10 @@ public class ExcelManager {
         VALUE_TITLE_PHOTO_INNER_IMG_ELSE(CELL_TYPE_BG.N,"", 26, 0, 26, 33, 0, 9, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         VALUE_TITLE_PHOTO_ETC_IMG_ELSE(CELL_TYPE_BG.N,"", 26, 10, 26, 33, 10, 19, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
 
-        HEAD_TITLE_PHOTO_INNER(CELL_TYPE_BG.Y,"맨홀내부", 38, 0, 38, 38, 0, 9, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        HEAD_TITLE_PHOTO_INNER(CELL_TYPE_BG.Y,"현장내부", 38, 0, 38, 38, 0, 9, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         HEAD_TITLE_PHOTO_ETC(CELL_TYPE_BG.Y,"특이사항", 38, 10, 38, 38, 10, 19, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
 
-        HEAD_TITLE_PHOTO_INNER_ELSE(CELL_TYPE_BG.Y,"맨홀내부", 34, 0, 34, 34, 0, 9, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        HEAD_TITLE_PHOTO_INNER_ELSE(CELL_TYPE_BG.Y,"현장내부", 34, 0, 34, 34, 0, 9, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         HEAD_TITLE_PHOTO_ETC_ELSE(CELL_TYPE_BG.Y,"특이사항", 34, 10, 34, 34, 10, 19, HEIGHT_SIZE.REPORT_ROW.size, (short) 110, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
 
         DIV_ETC(CELL_TYPE_BG.N,"", 39, 0, 39, 39, 0, 19, HEIGHT_SIZE.DIV.size, (short) 0, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, false, U_NONE),
@@ -288,9 +288,9 @@ public class ExcelManager {
     }
 
     enum SUM_CELL_STYLE {
-        MAIN_TITLE(CELL_TYPE_BG.N,"맨홀조사 총괄 집계표",0,0,0,0,0,77, HEIGHT_SIZE.MAIN.size, TITLE_SIZE.MAIN.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_DOUBLE),
+        MAIN_TITLE(CELL_TYPE_BG.N,"현장조사 총괄 집계표",0,0,0,0,0,77, HEIGHT_SIZE.MAIN.size, TITLE_SIZE.MAIN.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_DOUBLE),
         LOCAL(CELL_TYPE_BG.Y,"처리분구",1,0,1,4,0,0, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        COUNT(CELL_TYPE_BG.Y,"맨홀\n조사\n개수\n(개소)",1,1,1,4,1,1, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        COUNT(CELL_TYPE_BG.Y,"현장\n조사\n개수\n(개소)",1,1,1,4,1,1, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         LADDER_YN(CELL_TYPE_BG.Y,"사다리설치",1,2,1,3,2,3, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         INVERT_YN(CELL_TYPE_BG.Y,"인버트설치",1,4,1,3,4,5, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         ABNORMAL_ITEM(CELL_TYPE_BG.Y,"이상항목",1,6,1,1,6,29, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
@@ -308,14 +308,14 @@ public class ExcelManager {
         BLOCK_DAMAGE(CELL_TYPE_BG.Y,"블록이음부손상",1,69,1,3,69,71, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         BLOCK_LEAVE(CELL_TYPE_BG.Y,"블록이음부이탈",1,72,1,3,72,74, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         SURFACE_GAP(CELL_TYPE_BG.Y,"표면단차",1,75,1,3,75,77, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        MH_LID(CELL_TYPE_BG.Y,"맨홀뚜껑",2,6,2,2,6,11, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        MH_OUTER(CELL_TYPE_BG.Y,"맨홀주변부",2,12,2,2,12,17, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        MH_INNER(CELL_TYPE_BG.Y,"맨홀내부",2,18,2,2,18,23, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        MH_LID(CELL_TYPE_BG.Y,"뚜껑",2,6,2,2,6,11, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        MH_OUTER(CELL_TYPE_BG.Y,"현장주변부",2,12,2,2,12,17, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        MH_INNER(CELL_TYPE_BG.Y,"현장내부",2,18,2,2,18,23, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         MH_PIPE(CELL_TYPE_BG.Y,"관로접합부",2,24,2,2,24,29, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        MH_WATER_INVASION_OUTER(CELL_TYPE_BG.Y,"맨홀주변부",2,30,2,3,30,32, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        MH_WATER_INVASION_INNER(CELL_TYPE_BG.Y,"맨홀내부",2,33,2,3,33,35, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        MH_WATER_INVASION_OUTER(CELL_TYPE_BG.Y,"현장주변부",2,30,2,3,30,32, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        MH_WATER_INVASION_INNER(CELL_TYPE_BG.Y,"현장내부",2,33,2,3,33,35, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         MH_WATER_INVASION_PIPE(CELL_TYPE_BG.Y,"관로접합부",2,36,2,3,36,38, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        MH_WATER_INNER_LID(CELL_TYPE_BG.Y,"맨홀뚜껑",2,39,2,3,39,41, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        MH_WATER_INNER_LID(CELL_TYPE_BG.Y,"뚜껑",2,39,2,3,39,41, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         ABNORMAL_ITEM_MH_LID_DAMAGE(CELL_TYPE_BG.Y,"파손",3,6,3,3,6,8, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         ABNORMAL_ITEM_MH_LID_CRACK(CELL_TYPE_BG.Y,"균열",3,9,3,3,9,11, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         ABNORMAL_ITEM_MH_LID_OUTER_DAMAGE(CELL_TYPE_BG.Y,"파손",3,12,3,3,12,14, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
@@ -507,10 +507,10 @@ public class ExcelManager {
     }
 
     enum SUM_DETAIL_CELL_STYLE {
-        SUM_DETAIL_MAIN_TITLE(CELL_TYPE_BG.N,"맨홀조사 집계표",0,0,0,0,0,30, HEIGHT_SIZE.MAIN.size, TITLE_SIZE.MAIN.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_DOUBLE),
+        SUM_DETAIL_MAIN_TITLE(CELL_TYPE_BG.N,"현장조사 집계표",0,0,0,0,0,30, HEIGHT_SIZE.MAIN.size, TITLE_SIZE.MAIN.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_DOUBLE),
         NO(CELL_TYPE_BG.Y,"야장\n쪽수",1,0,1,3,0,0, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         LOCAL(CELL_TYPE_BG.Y,"처리\n분구",1,1,1,3,1,1, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        MH_NUM(CELL_TYPE_BG.Y,"맨홀번호",1,2,1,3,2,2, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        MH_NUM(CELL_TYPE_BG.Y,"현장번호",1,2,1,3,2,2, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         MH_DRAINAGE(CELL_TYPE_BG.Y,"배제방식",1,3,1,3,3,3, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         LADDER_YN(CELL_TYPE_BG.Y,"사다리\n설치",1,4,1,3,4,4, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         INVERT_YN(CELL_TYPE_BG.Y,"인버트\n설치",1,5,1,3,5,5, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
@@ -530,14 +530,14 @@ public class ExcelManager {
         BLOCK_LEAVE(CELL_TYPE_BG.Y,"블록이음부\n이탈",1,28,1,3,28,28, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         SURFACE_GAP(CELL_TYPE_BG.Y,"표면단차",1,29,1,3,29,29, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         MH_REMARK(CELL_TYPE_BG.Y,"특이사항",1,30,1,3,30,30, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        MH_LID(CELL_TYPE_BG.Y,"맨홀뚜껑",2,6,2,2,6,7, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        MH_OUTER(CELL_TYPE_BG.Y,"맨홀주변부",2,8,2,2,8,9, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        MH_INNER(CELL_TYPE_BG.Y,"맨홀내부",2,10,2,2,10,11, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        MH_LID(CELL_TYPE_BG.Y,"뚜껑",2,6,2,2,6,7, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        MH_OUTER(CELL_TYPE_BG.Y,"현장주변부",2,8,2,2,8,9, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        MH_INNER(CELL_TYPE_BG.Y,"현장내부",2,10,2,2,10,11, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         MH_PIPE(CELL_TYPE_BG.Y,"관로접합부",2,12,2,2,12,13, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        MH_WATER_INVASION_OUTER(CELL_TYPE_BG.Y,"맨홀주변부",2,14,2,3,14,14, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        MH_WATER_INVASION_INNER(CELL_TYPE_BG.Y,"맨홀내부",2,15,2,3,15,15, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        MH_WATER_INVASION_OUTER(CELL_TYPE_BG.Y,"현장주변부",2,14,2,3,14,14, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        MH_WATER_INVASION_INNER(CELL_TYPE_BG.Y,"현장내부",2,15,2,3,15,15, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         MH_WATER_INVASION_PIPE(CELL_TYPE_BG.Y,"관로접합부",2,16,2,3,16,16, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        MH_WATER_INNER_LID(CELL_TYPE_BG.Y,"맨홀뚜껑",2,17,2,3,17,17, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        MH_WATER_INNER_LID(CELL_TYPE_BG.Y,"현장뚜껑",2,17,2,3,17,17, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         ABNORMAL_ITEM_MH_LID_DAMAGE(CELL_TYPE_BG.Y,"파손",3,6,3,3,6,6, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         ABNORMAL_ITEM_MH_LID_CRACK(CELL_TYPE_BG.Y,"균열",3,7,3,3,7,7, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         ABNORMAL_ITEM_MH_LID_OUTER_DAMAGE(CELL_TYPE_BG.Y,"파손",3,8,3,3,8,8, HEIGHT_SIZE.TITLE.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
@@ -613,7 +613,7 @@ public class ExcelManager {
         NO(CELL_TYPE_BG.Y,"연번",1,0,1,2,0,0, HEIGHT_SIZE.EXTENTION.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         MH_DATE(CELL_TYPE_BG.Y,"조사일",1,1,1,2,1,1, HEIGHT_SIZE.EXTENTION.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         LOCAL(CELL_TYPE_BG.Y,"처리분구",1,2,1,2,2,2, HEIGHT_SIZE.EXTENTION.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
-        MH_NUM(CELL_TYPE_BG.Y,"맨홀번호",1,3,1,1,3,4, HEIGHT_SIZE.EXTENTION.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
+        MH_NUM(CELL_TYPE_BG.Y,"현장번호",1,3,1,1,3,4, HEIGHT_SIZE.EXTENTION.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         MH_DRAINAGE(CELL_TYPE_BG.Y,"배제방식",1,5,1,2,5,5, HEIGHT_SIZE.EXTENTION.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         MH_LOCAL_SPACIES(CELL_TYPE_BG.Y,"관종",1,6,1,2,6,6, HEIGHT_SIZE.EXTENTION.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
         MH_LOCAL_CIRCUMFERENCT(CELL_TYPE_BG.Y,"관경",1,7,1,2,7,7, HEIGHT_SIZE.EXTENTION.size, TITLE_SIZE.TITLE.size, CellStyle.ALIGN_CENTER, CellStyle.VERTICAL_CENTER, true, U_NONE),
@@ -886,29 +886,29 @@ public class ExcelManager {
             int columeThree = 900;
             int columeFour = 700;
             sheet.setColumnWidth(0, columeOne);  //지역분구
-            sheet.setColumnWidth(1, columeOne);  //맨홀조사개수(개소)
+            sheet.setColumnWidth(1, columeOne);  //현장조사개수(개소)
             sheet.setColumnWidth(2, columeTwo);  //사다리설치 유
             sheet.setColumnWidth(3, columeTwo);  //사다리설치 무
             sheet.setColumnWidth(4, columeTwo);  //인버트설치 유
             sheet.setColumnWidth(5, columeTwo);  //인버트설치 무
-            sheet.setColumnWidth(6, columeThree);  //이상항목 > 맨홀뚜껑 > 파손 > 대
-            sheet.setColumnWidth(7, columeThree);  //이상항목 > 맨홀뚜껑 > 파손 > 중
-            sheet.setColumnWidth(8, columeThree);  //이상항목 > 맨홀뚜껑 > 파손 > 소
-            sheet.setColumnWidth(9, columeThree);  //이상항목 > 맨홀뚜껑 > 균열 > 대
-            sheet.setColumnWidth(10, columeThree);  //이상항목 > 맨홀뚜껑 > 균열 > 중
-            sheet.setColumnWidth(11, columeThree);  //이상항목 > 맨홀뚜껑 > 균열 > 소
-            sheet.setColumnWidth(12, columeThree);  //이상항목 > 맨홀주변부 > 파손 > 대
-            sheet.setColumnWidth(13, columeThree);  //이상항목 > 맨홀주변부 > 파손 > 중
-            sheet.setColumnWidth(14, columeThree);  //이상항목 > 맨홀주변부 > 파손 > 소
-            sheet.setColumnWidth(15, columeThree);  //이상항목 > 맨홀주변부 > 균열 > 대
-            sheet.setColumnWidth(16, columeThree);  //이상항목 > 맨홀주변부 > 균열 > 중
-            sheet.setColumnWidth(17, columeThree);  //이상항목 > 맨홀주변부 > 균열 > 소
-            sheet.setColumnWidth(18, columeThree);  //이상항목 > 맨홀내부 > 파손 > 대
-            sheet.setColumnWidth(19, columeThree);  //이상항목 > 맨홀내부 > 파손 > 중
-            sheet.setColumnWidth(20, columeThree);  //이상항목 > 맨홀내부 > 파손 > 소
-            sheet.setColumnWidth(21, columeThree);  //이상항목 > 맨홀내부 > 균열 > 대
-            sheet.setColumnWidth(22, columeThree);  //이상항목 > 맨홀내부 > 균열 > 중
-            sheet.setColumnWidth(23, columeThree);  //이상항목 > 맨홀내부 > 균열 > 소
+            sheet.setColumnWidth(6, columeThree);  //이상항목 > 뚜껑 > 파손 > 대
+            sheet.setColumnWidth(7, columeThree);  //이상항목 > 뚜껑 > 파손 > 중
+            sheet.setColumnWidth(8, columeThree);  //이상항목 > 뚜껑 > 파손 > 소
+            sheet.setColumnWidth(9, columeThree);  //이상항목 > 뚜껑 > 균열 > 대
+            sheet.setColumnWidth(10, columeThree);  //이상항목 > 뚜껑 > 균열 > 중
+            sheet.setColumnWidth(11, columeThree);  //이상항목 > 뚜껑 > 균열 > 소
+            sheet.setColumnWidth(12, columeThree);  //이상항목 > 현장주변부 > 파손 > 대
+            sheet.setColumnWidth(13, columeThree);  //이상항목 > 현장주변부 > 파손 > 중
+            sheet.setColumnWidth(14, columeThree);  //이상항목 > 현장주변부 > 파손 > 소
+            sheet.setColumnWidth(15, columeThree);  //이상항목 > 현장주변부 > 균열 > 대
+            sheet.setColumnWidth(16, columeThree);  //이상항목 > 현장주변부 > 균열 > 중
+            sheet.setColumnWidth(17, columeThree);  //이상항목 > 현장주변부 > 균열 > 소
+            sheet.setColumnWidth(18, columeThree);  //이상항목 > 현장내부 > 파손 > 대
+            sheet.setColumnWidth(19, columeThree);  //이상항목 > 현장내부 > 파손 > 중
+            sheet.setColumnWidth(20, columeThree);  //이상항목 > 현장내부 > 파손 > 소
+            sheet.setColumnWidth(21, columeThree);  //이상항목 > 현장내부 > 균열 > 대
+            sheet.setColumnWidth(22, columeThree);  //이상항목 > 현장내부 > 균열 > 중
+            sheet.setColumnWidth(23, columeThree);  //이상항목 > 현장내부 > 균열 > 소
             sheet.setColumnWidth(24, columeThree);  //이상항목 > 관로접합부 > 파손 > 대
             sheet.setColumnWidth(25, columeThree);  //이상항목 > 관로접합부 > 파손 > 중
             sheet.setColumnWidth(26, columeThree);  //이상항목 > 관로접합부 > 파손 > 소
@@ -916,18 +916,18 @@ public class ExcelManager {
             sheet.setColumnWidth(28, columeThree);  //이상항목 > 관로접합부 > 균열 > 중
             sheet.setColumnWidth(29, columeThree);  //이상항목 > 관로접합부 > 균열 > 소
 
-            sheet.setColumnWidth(30, columeThree);  //침입수 > 맨홀주변부 >  대
-            sheet.setColumnWidth(31, columeThree);  //침입수 > 맨홀주변부 >  중
-            sheet.setColumnWidth(32, columeThree);  //침입수 > 맨홀주변부 >  소
-            sheet.setColumnWidth(33, columeThree);  //침입수 > 맨홀내부 >  대
-            sheet.setColumnWidth(34, columeThree);  //침입수 > 맨홀내부 >  중
-            sheet.setColumnWidth(35, columeThree);  //침입수 > 맨홀내부 >  소
+            sheet.setColumnWidth(30, columeThree);  //침입수 > 현장주변부 >  대
+            sheet.setColumnWidth(31, columeThree);  //침입수 > 현장주변부 >  중
+            sheet.setColumnWidth(32, columeThree);  //침입수 > 현장주변부 >  소
+            sheet.setColumnWidth(33, columeThree);  //침입수 > 현장내부 >  대
+            sheet.setColumnWidth(34, columeThree);  //침입수 > 현장내부 >  중
+            sheet.setColumnWidth(35, columeThree);  //침입수 > 현장내부 >  소
             sheet.setColumnWidth(36, columeThree);  //침입수 > 관로접합부 >  대
             sheet.setColumnWidth(37, columeThree);  //침입수 > 관로접합부 >  중
             sheet.setColumnWidth(38, columeThree);  //침입수 > 관로접합부 >  소
-            sheet.setColumnWidth(39, columeThree);  //유입수 > 맨홀뚜껑 >  대
-            sheet.setColumnWidth(40, columeThree);  //유입수 > 맨홀뚜껑 >  중
-            sheet.setColumnWidth(41, columeThree);  //유입수 > 맨홀뚜껑 >  소
+            sheet.setColumnWidth(39, columeThree);  //유입수 > 뚜껑 >  대
+            sheet.setColumnWidth(40, columeThree);  //유입수 > 뚜껑 >  중
+            sheet.setColumnWidth(41, columeThree);  //유입수 > 뚜껑 >  소
 
             sheet.setColumnWidth(42, columeFour);  //장애물 > 양호
             sheet.setColumnWidth(43, columeFour);  //장애물 > 대
@@ -977,22 +977,22 @@ public class ExcelManager {
 
             sheet.setColumnWidth(0, columeTwo);  //야장쪽수
             sheet.setColumnWidth(1, columeOne);  //처리분구
-            sheet.setColumnWidth(2, columeMhNum);  //맨홀번호
+            sheet.setColumnWidth(2, columeMhNum);  //현장번호
             sheet.setColumnWidth(3, columeOne);  //배제방식
             sheet.setColumnWidth(4, columeOne);  //사다리설치
             sheet.setColumnWidth(5, columeOne);  //인버트설치
-            sheet.setColumnWidth(6, columeTwo);  //이상항목 > 맨홀뚜껑 > 파손 > 대
-            sheet.setColumnWidth(7, columeTwo);  //이상항목 > 맨홀뚜껑 > 균열 > 대
-            sheet.setColumnWidth(8, columeTwo);  //이상항목 > 맨홀주변부 > 파손 > 대
-            sheet.setColumnWidth(9, columeTwo);  //이상항목 > 맨홀주변부 > 균열 > 대
-            sheet.setColumnWidth(10, columeTwo);  //이상항목 > 맨홀내부 > 파손 > 대
-            sheet.setColumnWidth(11, columeTwo);  //이상항목 > 맨홀내부 > 균열 > 대
+            sheet.setColumnWidth(6, columeTwo);  //이상항목 >뚜껑 > 파손 > 대
+            sheet.setColumnWidth(7, columeTwo);  //이상항목 > 뚜껑 > 균열 > 대
+            sheet.setColumnWidth(8, columeTwo);  //이상항목 > 현장주변부 > 파손 > 대
+            sheet.setColumnWidth(9, columeTwo);  //이상항목 > 현장주변부 > 균열 > 대
+            sheet.setColumnWidth(10, columeTwo);  //이상항목 > 현장내부 > 파손 > 대
+            sheet.setColumnWidth(11, columeTwo);  //이상항목 > 현장내부 > 균열 > 대
             sheet.setColumnWidth(12, columeTwo);  //이상항목 > 관로접합부 > 파손 > 대
             sheet.setColumnWidth(13, columeTwo);  //이상항목 > 관로접합부 > 균열 > 대
-            sheet.setColumnWidth(14, columeOne);  //침입수 > 맨홀주변부 >  대
-            sheet.setColumnWidth(15, columeOne);  //침입수 > 맨홀내부 >  대
+            sheet.setColumnWidth(14, columeOne);  //침입수 > 현장주변부 >  대
+            sheet.setColumnWidth(15, columeOne);  //침입수 > 현장내부 >  대
             sheet.setColumnWidth(16, columeOne);  //침입수 > 관로접합부 >  대
-            sheet.setColumnWidth(17, columeOne);  //유입수 > 맨홀뚜껑 >  대
+            sheet.setColumnWidth(17, columeOne);  //유입수 > 뚜껑 >  대
             sheet.setColumnWidth(18, columeOne);  //장애물 > 양호
             sheet.setColumnWidth(19, columeOne);  //뿌리침입 > 양호
             sheet.setColumnWidth(20, columeOne);  //악취발생 > 양호
@@ -1014,8 +1014,8 @@ public class ExcelManager {
             sheet.setColumnWidth(0, columeNo);  //연번
             sheet.setColumnWidth(1, columeMhNum);  //조사일
             sheet.setColumnWidth(2, columeTwo);    //처리분구
-            sheet.setColumnWidth(3, columeMhNum);  //맨홀번호 시점
-            sheet.setColumnWidth(4, columeMhNum);  //맨홀번호 종점
+            sheet.setColumnWidth(3, columeMhNum);  //현장번호 시점
+            sheet.setColumnWidth(4, columeMhNum);  //현장번호 종점
             sheet.setColumnWidth(5, columeTwo);  //배제방식
             sheet.setColumnWidth(6, columeTwo);  //관종
             sheet.setColumnWidth(7, columeTwo);  //관경
@@ -1027,12 +1027,12 @@ public class ExcelManager {
             sheet.setColumnWidth(2, 1000);
             sheet.setColumnWidth(3, 1400); //배제방식
             sheet.setColumnWidth(4, 1000);
-            sheet.setColumnWidth(5, 800);  //맨홀번호
+            sheet.setColumnWidth(5, 800);  //현장번호
             sheet.setColumnWidth(6, 800);
             sheet.setColumnWidth(7, 1200);
             sheet.setColumnWidth(8, 1600);  //규격
             sheet.setColumnWidth(9, 1200);
-            sheet.setColumnWidth(10, 1200); //맨홀깊이
+            sheet.setColumnWidth(10, 1200); //현장깊이
             sheet.setColumnWidth(11, 1200);
             sheet.setColumnWidth(12, 1000); //GPS위도
             sheet.setColumnWidth(13, 1000);
@@ -1212,7 +1212,7 @@ public class ExcelManager {
     }
 
     /**
-     * 맨홀조사야장 > 각 사진 넣기 처리
+     * 현장조사야장 > 각 사진 넣기 처리
      * setManholeExcel에서 호출합니다.
      * @throws ExecutionException
      * @throws InterruptedException
@@ -1340,7 +1340,7 @@ public class ExcelManager {
 
         cell.setCellValue(cellValue);
 
-        //"맨홀 조사 개수(개소)"에 대한 행간처리
+        //"현장 조사 개수(개소)"에 대한 행간처리
         if(SUM_CELL_STYLE.COUNT.equals(cellStyle)) {
             RichTextString richText = creationHelper.createRichTextString(SUM_CELL_STYLE.COUNT.title);
             cell.setCellValue(richText);
@@ -1902,7 +1902,7 @@ public class ExcelManager {
     }
 
     /**
-     *맨홀조사야장 제목 스타일
+     *현장조사야장 제목 스타일
      */
     private void setMainTitleStyle(HSSFSheet sheet, Row row , CELL_STYLE cellStyle, @Nullable String text, HSSFCellStyle cellStyleMainTitle){
 
@@ -1947,7 +1947,7 @@ public class ExcelManager {
     }
 
     /**
-     * 맨홀조사 총괄집계표 제목 스타일
+     * 현장조사 총괄집계표 제목 스타일
      * @param sheet
      * @param row
      * @param cellStyle
@@ -1997,7 +1997,7 @@ public class ExcelManager {
     }
 
     /**
-     * 맨홀조사 집계표
+     * 현장조사 집계표
      * @param sheet
      * @param row
      * @param cellStyle
@@ -2088,7 +2088,7 @@ public class ExcelManager {
     }
 
     /**
-     * 맨홀 조사 야장
+     * 현장 조사 야장
      * MainTitle row0, CELL_STYLE_MAIN
      * @param row
      * @param cellStyle
@@ -2275,12 +2275,12 @@ public class ExcelManager {
 
 
     /**
-     * 엑셀 생성 시작!! > 맨홀조사 총괄집계표
+     * 엑셀 생성 시작!! > 현장조사 총괄집계표
      */
     public void createManholeSumExcel(FieldBasicBeanS fieldBasicBeanS, FieldDetailListSumBeanS fieldDetailListSumBeanS, ArrayList<FieldDetailBeanS> mFieldDetailList){
         GomsLog.d(LOG_TAG, "createManholeSumExcel()");
 
-        HSSFSheet sumSheet = createSumSheet("맨홀조사 총괄집계표");
+        HSSFSheet sumSheet = createSumSheet("현장조사 총괄집계표");
 
         //row 5, col 80까지 생성
         /*
@@ -2294,7 +2294,7 @@ public class ExcelManager {
         //총괄집계표 폰트 생성
         Font font = getSumFont();
 
-        //첫번째 행 >> 맨홀조사 총괄 집계표
+        //첫번째 행 >> 현장조사 총괄 집계표
 
         Font fontMainTitle = mWorkbook.createFont();
         fontMainTitle.setBold(true);
@@ -2311,7 +2311,7 @@ public class ExcelManager {
         hssfCellStyleMainTitle.setFont(fontMainTitle);
 
         Row rowSumMainTitle = sumSheet.createRow(SUM_CELL_STYLE.MAIN_TITLE.row);
-        setSumMainTitleStyle(sumSheet, rowSumMainTitle, SUM_CELL_STYLE.MAIN_TITLE, "맨홀조사 총괄 집계표", hssfCellStyleMainTitle);
+        setSumMainTitleStyle(sumSheet, rowSumMainTitle, SUM_CELL_STYLE.MAIN_TITLE, "현장조사 총괄 집계표", hssfCellStyleMainTitle);
 
         Font fontReportBg = mWorkbook.createFont();
         fontReportBg.setBold(false);
@@ -2350,7 +2350,7 @@ public class ExcelManager {
         //두번째 행
         Row rowSumTitle = sumSheet.createRow(SUM_CELL_STYLE.LOCAL.row);
         setSumStyleBg(sumSheet, rowSumTitle, SUM_CELL_STYLE.LOCAL, "처리\n분구", hssfCellStyleBg);
-        setSumStyleBg(sumSheet, rowSumTitle, SUM_CELL_STYLE.COUNT, "맨홀\n조사\n개수\n(개소)", hssfCellStyleBg);
+        setSumStyleBg(sumSheet, rowSumTitle, SUM_CELL_STYLE.COUNT, "현장\n조사\n개수\n(개소)", hssfCellStyleBg);
         setSumStyleBg(sumSheet, rowSumTitle, SUM_CELL_STYLE.LADDER_YN, "사다리설치", hssfCellStyleBg);
         setSumStyleBg(sumSheet, rowSumTitle, SUM_CELL_STYLE.INVERT_YN, "인버트설치", hssfCellStyleBg);
         setSumStyleBg(sumSheet, rowSumTitle, SUM_CELL_STYLE.ABNORMAL_ITEM, "이상항목", hssfCellStyleBg);
@@ -2371,14 +2371,14 @@ public class ExcelManager {
 
         //세번째 행
         Row rowSumSubTitle = sumSheet.createRow(SUM_CELL_STYLE.MH_LID.row);
-        setSumStyleBg(sumSheet, rowSumSubTitle, SUM_CELL_STYLE.MH_LID, "맨홀뚜껑", hssfCellStyleBg);
-        setSumStyleBg(sumSheet, rowSumSubTitle, SUM_CELL_STYLE.MH_OUTER, "맨홀주변부", hssfCellStyleBg);
-        setSumStyleBg(sumSheet, rowSumSubTitle, SUM_CELL_STYLE.MH_INNER, "맨홀내부", hssfCellStyleBg);
+        setSumStyleBg(sumSheet, rowSumSubTitle, SUM_CELL_STYLE.MH_LID, "뚜껑", hssfCellStyleBg);
+        setSumStyleBg(sumSheet, rowSumSubTitle, SUM_CELL_STYLE.MH_OUTER, "현장주변부", hssfCellStyleBg);
+        setSumStyleBg(sumSheet, rowSumSubTitle, SUM_CELL_STYLE.MH_INNER, "현장내부", hssfCellStyleBg);
         setSumStyleBg(sumSheet, rowSumSubTitle, SUM_CELL_STYLE.MH_PIPE, "관로접합부", hssfCellStyleBg);
-        setSumStyleBg(sumSheet, rowSumSubTitle, SUM_CELL_STYLE.MH_WATER_INVASION_OUTER, "맨홀주변부", hssfCellStyleBg);
-        setSumStyleBg(sumSheet, rowSumSubTitle, SUM_CELL_STYLE.MH_WATER_INVASION_INNER, "맨홀내부", hssfCellStyleBg);
+        setSumStyleBg(sumSheet, rowSumSubTitle, SUM_CELL_STYLE.MH_WATER_INVASION_OUTER, "현장주변부", hssfCellStyleBg);
+        setSumStyleBg(sumSheet, rowSumSubTitle, SUM_CELL_STYLE.MH_WATER_INVASION_INNER, "현장내부", hssfCellStyleBg);
         setSumStyleBg(sumSheet, rowSumSubTitle, SUM_CELL_STYLE.MH_WATER_INVASION_PIPE, "관로접합부", hssfCellStyleBg);
-        setSumStyleBg(sumSheet, rowSumSubTitle, SUM_CELL_STYLE.MH_WATER_INNER_LID, "맨홀뚜껑", hssfCellStyleBg);
+        setSumStyleBg(sumSheet, rowSumSubTitle, SUM_CELL_STYLE.MH_WATER_INNER_LID, "뚜껑", hssfCellStyleBg);
 
         //네번째 행
         Row rowSumDamageCrackTitle = sumSheet.createRow(SUM_CELL_STYLE.ABNORMAL_ITEM_MH_LID_DAMAGE.row);
@@ -2629,7 +2629,7 @@ public class ExcelManager {
             }
         }
 
-        //처리분구, 맨홀조사개수(개소), 사다리설치에 대한 우측 라인 긋기, 2,3라인
+        //처리분구, 현장조사개수(개소), 사다리설치에 대한 우측 라인 긋기, 2,3라인
         HashMap<Integer, SUM_CELL_STYLE> sumCellStyleHashMap_local = new HashMap<Integer, SUM_CELL_STYLE>();
         sumCellStyleHashMap_local.put(1, SUM_CELL_STYLE.LOCAL);
         sumCellStyleHashMap_local.put(2, SUM_CELL_STYLE.COUNT);
@@ -2688,12 +2688,12 @@ public class ExcelManager {
     }
 
     /**
-     * 엑셀 생성 > 맨홀조사 집계표 상세항목
+     * 엑셀 생성 > 현장조사 집계표 상세항목
      */
     public void createManholeSumDetailExcel(FieldBasicBeanS fieldBasicBeanS, ArrayList<FieldDetailBeanS> fieldDetailList){
         GomsLog.d(LOG_TAG, "createManholeSumExcel()");
 
-        HSSFSheet sumDetailSheet = createSumDetailSheet("맨홀조사 집계표");
+        HSSFSheet sumDetailSheet = createSumDetailSheet("현장조사 집계표");
 
         /*
         //row 5, col 30까지 생성
@@ -2708,7 +2708,7 @@ public class ExcelManager {
         }
         */
 
-        //첫번째 행 >> 맨홀조사 집계표
+        //첫번째 행 >> 현장조사 집계표
 
         Font fontMainTitle = mWorkbook.createFont();
         fontMainTitle.setBold(true);
@@ -2725,7 +2725,7 @@ public class ExcelManager {
         hssfCellStyleMainTitle.setFont(fontMainTitle);
 
         Row rowSumMainTitle = sumDetailSheet.createRow(SUM_DETAIL_CELL_STYLE.SUM_DETAIL_MAIN_TITLE.row);
-        setSumDetailMainTitleStyle(sumDetailSheet, rowSumMainTitle, SUM_DETAIL_CELL_STYLE.SUM_DETAIL_MAIN_TITLE, "맨홀조사 집계표", hssfCellStyleMainTitle);
+        setSumDetailMainTitleStyle(sumDetailSheet, rowSumMainTitle, SUM_DETAIL_CELL_STYLE.SUM_DETAIL_MAIN_TITLE, "현장조사 집계표", hssfCellStyleMainTitle);
 
         Font font = getFont();
 
@@ -2760,7 +2760,7 @@ public class ExcelManager {
         Row rowSumTitle = sumDetailSheet.createRow(SUM_DETAIL_CELL_STYLE.LOCAL.row);
         setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumTitle, SUM_DETAIL_CELL_STYLE.NO, "야장\n쪽수");
         setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumTitle, SUM_DETAIL_CELL_STYLE.LOCAL, "처리\n분구");
-        setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumTitle, SUM_DETAIL_CELL_STYLE.MH_NUM, "맨홀번호");
+        setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumTitle, SUM_DETAIL_CELL_STYLE.MH_NUM, "현장번호");
         setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumTitle, SUM_DETAIL_CELL_STYLE.MH_DRAINAGE, "배제방식");
         setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumTitle, SUM_DETAIL_CELL_STYLE.LADDER_YN, "사다리설치");
         setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumTitle, SUM_DETAIL_CELL_STYLE.INVERT_YN, "인버트설치");
@@ -2784,14 +2784,14 @@ public class ExcelManager {
 
         //세번째 행
         Row rowSumSubTitle = sumDetailSheet.createRow(SUM_DETAIL_CELL_STYLE.MH_LID.row);
-        setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumSubTitle, SUM_DETAIL_CELL_STYLE.MH_LID, "맨홀뚜껑");
-        setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumSubTitle, SUM_DETAIL_CELL_STYLE.MH_OUTER, "맨홀주변부");
-        setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumSubTitle, SUM_DETAIL_CELL_STYLE.MH_INNER, "맨홀내부");
+        setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumSubTitle, SUM_DETAIL_CELL_STYLE.MH_LID, "뚜껑");
+        setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumSubTitle, SUM_DETAIL_CELL_STYLE.MH_OUTER, "현장주변부");
+        setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumSubTitle, SUM_DETAIL_CELL_STYLE.MH_INNER, "현장내부");
         setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumSubTitle, SUM_DETAIL_CELL_STYLE.MH_PIPE, "관로접합부");
-        setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumSubTitle, SUM_DETAIL_CELL_STYLE.MH_WATER_INVASION_OUTER, "맨홀주변부");
-        setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumSubTitle, SUM_DETAIL_CELL_STYLE.MH_WATER_INVASION_INNER, "맨홀내부");
+        setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumSubTitle, SUM_DETAIL_CELL_STYLE.MH_WATER_INVASION_OUTER, "현장주변부");
+        setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumSubTitle, SUM_DETAIL_CELL_STYLE.MH_WATER_INVASION_INNER, "현장내부");
         setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumSubTitle, SUM_DETAIL_CELL_STYLE.MH_WATER_INVASION_PIPE, "관로접합부");
-        setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumSubTitle, SUM_DETAIL_CELL_STYLE.MH_WATER_INNER_LID, "맨홀뚜껑");
+        setSumDetailStyleBg(sumDetailSheet, hssfCellStyleBg, rowSumSubTitle, SUM_DETAIL_CELL_STYLE.MH_WATER_INNER_LID, "뚜껑");
 
         //네번째 행
         Row rowSumDamageCrackTitle = sumDetailSheet.createRow(SUM_DETAIL_CELL_STYLE.ABNORMAL_ITEM_MH_LID_DAMAGE.row);
@@ -2946,7 +2946,7 @@ public class ExcelManager {
         setColumeWidth(sumDetailSheet, SHEET_TYPE.SUMMARY_DETAIL);
 
 
-        //맨홀내부 관로접합부 파손,균열 색상 및 데이타 지정
+        //현장내부 관로접합부 파손,균열 색상 및 데이타 지정
 /*        HSSFCellStyle hssfCellStyle = createCellStyle();
         hssfCellStyle.setAlignment(hAlignCenter);
         hssfCellStyle.setVerticalAlignment(vAlignCenter);
@@ -2971,7 +2971,7 @@ public class ExcelManager {
         hssfCellStyleRight.setAlignment(CellStyle.ALIGN_CENTER);
         hssfCellStyleRight.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
 
-        //침입수, 유입수 > 맨홀주변부, 맨홀내부, 관로접합부,맨홀뚜껑 우측라인 끗기
+        //침입수, 유입수 > 현장주변부, 현장내부, 관로접합부,뚜껑 우측라인 끗기
         Row rowDiv3 = sumDetailSheet.getRow(3);
         if(rowDiv3 == null){
             rowDiv3= sumDetailSheet.createRow(3);
@@ -3041,10 +3041,10 @@ public class ExcelManager {
     }
 
     /**
-     * 엑셀 생성 > 맨홀조사 연장집계표
+     * 엑셀 생성 > 현장조사 연장집계표
      */
     public void createManholeSumExtentionExcel(FieldBasicBeanS fieldBasicBeanS, ArrayList<FieldDetailBeanS> fieldDetailList){
-        GomsLog.d(LOG_TAG, "createManholeSumExtensionExcel() >>> 맨홀조사 연장집계표");
+        GomsLog.d(LOG_TAG, "createManholeSumExtensionExcel() >>> 현장조사 연장집계표");
 
         HSSFSheet sumExtensionSheet = createSumExtensionSheet("연장집계표");
 
@@ -3106,7 +3106,7 @@ public class ExcelManager {
         setSumExtensionStyleBg(sumExtensionSheet, rowSumTitle, SUM_EXTENSION_CELL_STYLE.NO, "연번", hssfCellStyleBg);
         setSumExtensionStyleBg(sumExtensionSheet, rowSumTitle, SUM_EXTENSION_CELL_STYLE.MH_DATE, "조사일", hssfCellStyleBg);
         setSumExtensionStyleBg(sumExtensionSheet, rowSumTitle, SUM_EXTENSION_CELL_STYLE.LOCAL, "처리\n분구", hssfCellStyleBg);
-        setSumExtensionStyleBg(sumExtensionSheet, rowSumTitle, SUM_EXTENSION_CELL_STYLE.MH_NUM, "맨홀번호", hssfCellStyleBg);
+        setSumExtensionStyleBg(sumExtensionSheet, rowSumTitle, SUM_EXTENSION_CELL_STYLE.MH_NUM, "현장번호", hssfCellStyleBg);
         setSumExtensionStyleBg(sumExtensionSheet, rowSumTitle, SUM_EXTENSION_CELL_STYLE.MH_DRAINAGE, "배제방식", hssfCellStyleBg);
         setSumExtensionStyleBg(sumExtensionSheet, rowSumTitle, SUM_EXTENSION_CELL_STYLE.MH_LOCAL_SPACIES, "관종", hssfCellStyleBg);
         setSumExtensionStyleBg(sumExtensionSheet, rowSumTitle, SUM_EXTENSION_CELL_STYLE.MH_LOCAL_CIRCUMFERENCT, "관경", hssfCellStyleBg);
@@ -3153,7 +3153,7 @@ public class ExcelManager {
             rowDiv2= sumExtensionSheet.createRow(2);
         }
 
-        //연번 및 맨홀번호 시점 앞까지 열
+        //연번 및 현장번호 시점 앞까지 열
         for(int i = 0; i < 3; i++){
             Cell iCell;
             try {
@@ -3167,7 +3167,7 @@ public class ExcelManager {
             iCell.setCellStyle(hssfCellStyleRight);
         }
 
-        //맨홀번호 종점 이후부터 끝까지
+        //현장번호 종점 이후부터 끝까지
         for(int i = 5; i < 10; i++){
             Cell iCell;
             try {
@@ -3193,7 +3193,7 @@ public class ExcelManager {
         setPaperAligment(sumExtensionSheet);
         setColumeWidth(sumExtensionSheet, SHEET_TYPE.SUMMARY_EXTENSION);
 
-        //드디어, 마지막 맨홀야장조사 엑셀만들기
+        //드디어, 마지막 현장야장조사 엑셀만들기
         createManholeExcel(fieldBasicBeanS, fieldDetailList);
 
         //saveExcel();
@@ -3201,7 +3201,7 @@ public class ExcelManager {
     }
 
     /**
-     * 맨홀조사집계표 > 데이타 부분 스타일
+     * 현장조사집계표 > 데이타 부분 스타일
      */
     private void setDataCellStyle(HSSFSheet sheet, int firstRow, int lastRow, int firstCol, int lastCol){
 
@@ -3290,8 +3290,8 @@ public class ExcelManager {
     }
 
     /**
-     * 엑셀 생성 시작 > 맨홀 야장 조사
-     * for문으로 detailList array 기반으로 "맨홀 야장 조사" 탭 생성 및 내용을 기입하자
+     * 엑셀 생성 시작 > 현장 야장 조사
+     * for문으로 detailList array 기반으로 "현장 야장 조사" 탭 생성 및 내용을 기입하자
      * @param fieldBasicBeanS       //기본 데이타
      * @param fieldDetailList  //상세 리스트
      */
@@ -3362,7 +3362,7 @@ public class ExcelManager {
 
         CreationHelper creationHelper = mWorkbook.getCreationHelper();
 
-        //상세리스트별 맨홀야장조사 탭 생성 및 데이타 주입
+        //상세리스트별 현장야장조사 탭 생성 및 데이타 주입
         int page = 1;
         for(FieldDetailBeanS fieldDetailBeanS : fieldDetailList) {
             setManholeExcel(StringUtil.intToString(page), fieldBasicBeanS, fieldDetailBeanS, hssfCellStyleBg, hssfCellStyleValue, hssfCellStyleRemark, hssfCellStyleMainTitle, creationHelper);
@@ -3374,7 +3374,7 @@ public class ExcelManager {
     }
 
     /**
-     * 탭별로 맨홀조사야장 데이타 주입 처리
+     * 탭별로 현장조사야장 데이타 주입 처리
      * createManholeExcel에서 호출
      * @param fieldDetailBeanS
      */
@@ -3383,9 +3383,9 @@ public class ExcelManager {
 
         HSSFSheet sheet = mWorkbook.createSheet(page);
 
-        //첫번째 행 >> 맨홀 조사 야장
+        //첫번째 행 >> 현장 조사 야장
         Row row0 = sheet.createRow(0);
-        setMainTitleStyle(sheet,  row0, CELL_STYLE.MAIN_TITLE, "맨홀 조사 야장", cellStyleMainTitle);
+        setMainTitleStyle(sheet,  row0, CELL_STYLE.MAIN_TITLE, "현장 조사 야장", cellStyleMainTitle);
 
         //두번째 행
         Row row1 = sheet.createRow(1);
@@ -3405,9 +3405,9 @@ public class ExcelManager {
         setStyleBg(sheet, row3,  CELL_STYLE.HEAD_TITLE_NO, "NO.", cellStyleBg, creationHelper);
         setStyleBg(sheet, row3,  CELL_STYLE.HEAD_TITLE_MH_LOCAL, "처리구역", cellStyleBg, creationHelper);
         setStyleBg(sheet, row3,  CELL_STYLE.HEAD_TITLE_MH_DRAINAGE, "배제방식", cellStyleBg, creationHelper);
-        setStyleBg(sheet, row3,  CELL_STYLE.HEAD_TITLE_MH_NUM, "맨홀번호", cellStyleBg, creationHelper);
+        setStyleBg(sheet, row3,  CELL_STYLE.HEAD_TITLE_MH_NUM, "현장번호", cellStyleBg, creationHelper);
         setStyleBg(sheet, row3,  CELL_STYLE.HEAD_TITLE_MH_STANDARD, "규격", cellStyleBg, creationHelper);
-        setStyleBg(sheet, row3,  CELL_STYLE.HEAD_TITLE_MH_DEPTH, "맨홀깊이(m)", cellStyleBg, creationHelper);
+        setStyleBg(sheet, row3,  CELL_STYLE.HEAD_TITLE_MH_DEPTH, "현장깊이(m)", cellStyleBg, creationHelper);
         setStyleBg(sheet, row3,  CELL_STYLE.HEAD_TITLE_MH_LAT, "GPS위도", cellStyleBg, creationHelper);
         setStyleBg(sheet, row3,  CELL_STYLE.HEAD_TITLE_MH_LNG, "GPS경도", cellStyleBg, creationHelper);
         setStyleBg(sheet, row3,  CELL_STYLE.HEAD_TITLE_MH_DATE, "조사일시", cellStyleBg, creationHelper);
@@ -3439,7 +3439,7 @@ public class ExcelManager {
 
         Row rowMhLid = sheet.createRow(CELL_STYLE.HEAD_TITLE_MH_LID.row);  //6
 
-        setStyleBg(sheet, rowMhLid,  CELL_STYLE.HEAD_TITLE_MH_LID, "맨홀뚜껑", cellStyleBg, creationHelper);
+        setStyleBg(sheet, rowMhLid,  CELL_STYLE.HEAD_TITLE_MH_LID, "뚜껑", cellStyleBg, creationHelper);
         setStyleBg(sheet, rowMhLid,  CELL_STYLE.HEAD_TITLE_MH_LIB_DAMAGE, "파손", cellStyleBg, creationHelper);
         setStyle(sheet, rowMhLid,  CELL_STYLE.VALUE_TITLE_MH_LIB_DAMAGE, convertData(fieldDetailBeanS.getRes_mh_lid_damage_lms()), cellStyleValue);
         setStyleBg(sheet, rowMhLid,  CELL_STYLE.HEAD_TITLE_MH_LIB_CRACK, "균열", cellStyleBg, creationHelper);
@@ -3450,7 +3450,7 @@ public class ExcelManager {
 
         Row rowMhOuter = sheet.createRow(CELL_STYLE.HEAD_TITLE_MH_OUTER.row);    //7
 
-        setStyleBg(sheet, rowMhOuter,  CELL_STYLE.HEAD_TITLE_MH_OUTER, "맨홀주변부", cellStyleBg, creationHelper);
+        setStyleBg(sheet, rowMhOuter,  CELL_STYLE.HEAD_TITLE_MH_OUTER, "현장주변부", cellStyleBg, creationHelper);
         setStyleBg(sheet, rowMhOuter,  CELL_STYLE.HEAD_TITLE_MH_OUTER_DAMAGE, "파손", cellStyleBg, creationHelper);
         setStyle(sheet, rowMhOuter,  CELL_STYLE.VALUE_TITLE_MH_OUTER_DAMAGE, convertData(fieldDetailBeanS.getRes_mh_outer_damage_lms()), cellStyleValue);
         setStyleBg(sheet, rowMhOuter,  CELL_STYLE.HEAD_TITLE_MH_OUTER_CRACK, "균열", cellStyleBg, creationHelper);
@@ -3460,7 +3460,7 @@ public class ExcelManager {
 
         Row row8 = sheet.createRow(8);
 
-        setStyleBg(sheet, row8,  CELL_STYLE.HEAD_TITLE_MH_INNER, "맨홀내부", cellStyleBg, creationHelper);
+        setStyleBg(sheet, row8,  CELL_STYLE.HEAD_TITLE_MH_INNER, "현장내부", cellStyleBg, creationHelper);
         setStyleBg(sheet, row8,  CELL_STYLE.HEAD_TITLE_MH_INNER_DAMAGE, "파손", cellStyleBg, creationHelper);
         setStyle(sheet, row8,  CELL_STYLE.VALUE_TITLE_MH_INNER_DAMAGE, convertData(fieldDetailBeanS.getRes_mh_inner_damage_lms()), cellStyleValue);
         setStyleBg(sheet, row8,  CELL_STYLE.HEAD_TITLE_MH_INNER_CRACK, "균열", cellStyleBg, creationHelper);
@@ -3553,13 +3553,13 @@ public class ExcelManager {
             setStyle(sheet, rowPhoto1,  CELL_STYLE.VALUE_TITLE_PHOTO_AROUND_IMG, "", cellStyleValue);
             setStyle(sheet, rowPhoto1,  CELL_STYLE.VALUE_TITLE_PHOTO_OUTER_IMG, "", cellStyleValue);
 
-            setStyleBg(sheet, rowPhotoTitle1,  CELL_STYLE.HEAD_TITLE_PHOTO_AROUND, "맨홀전경", cellStyleBg, creationHelper);
-            setStyleBg(sheet, rowPhotoTitle1,  CELL_STYLE.HEAD_TITLE_PHOTO_OUTER, "맨홀외부", cellStyleBg, creationHelper);
+            setStyleBg(sheet, rowPhotoTitle1,  CELL_STYLE.HEAD_TITLE_PHOTO_AROUND, "현장전경", cellStyleBg, creationHelper);
+            setStyleBg(sheet, rowPhotoTitle1,  CELL_STYLE.HEAD_TITLE_PHOTO_OUTER, "현장외부", cellStyleBg, creationHelper);
 
             setStyle(sheet, rowPhoto2,  CELL_STYLE.VALUE_TITLE_PHOTO_INNER_IMG, "", cellStyleValue);
             setStyle(sheet, rowPhoto2,  CELL_STYLE.VALUE_TITLE_PHOTO_ETC_IMG, "", cellStyleValue);
 
-            setStyleBg(sheet, rowPhotoTitle2,  CELL_STYLE.HEAD_TITLE_PHOTO_INNER, "맨홀내부", cellStyleBg, creationHelper);
+            setStyleBg(sheet, rowPhotoTitle2,  CELL_STYLE.HEAD_TITLE_PHOTO_INNER, "현장내부", cellStyleBg, creationHelper);
             setStyleBg(sheet, rowPhotoTitle2,  CELL_STYLE.HEAD_TITLE_PHOTO_ETC, "특이사항", cellStyleBg, creationHelper);
 
             //특이사항
@@ -3613,13 +3613,13 @@ public class ExcelManager {
             setStyle(sheet, rowPhoto1,  CELL_STYLE.VALUE_TITLE_PHOTO_AROUND_IMG_ELSE, "", cellStyleValue);
             setStyle(sheet, rowPhoto1,  CELL_STYLE.VALUE_TITLE_PHOTO_OUTER_IMG_ELSE, "", cellStyleValue);
 
-            setStyleBg(sheet, rowPhotoTitle1,  CELL_STYLE.HEAD_TITLE_PHOTO_AROUND_ELSE, "맨홀전경", cellStyleBg, creationHelper);
-            setStyleBg(sheet, rowPhotoTitle1,  CELL_STYLE.HEAD_TITLE_PHOTO_OUTER_ELSE, "맨홀외부", cellStyleBg, creationHelper);
+            setStyleBg(sheet, rowPhotoTitle1,  CELL_STYLE.HEAD_TITLE_PHOTO_AROUND_ELSE, "현장전경", cellStyleBg, creationHelper);
+            setStyleBg(sheet, rowPhotoTitle1,  CELL_STYLE.HEAD_TITLE_PHOTO_OUTER_ELSE, "현장외부", cellStyleBg, creationHelper);
 
             setStyle(sheet, rowPhoto2,  CELL_STYLE.VALUE_TITLE_PHOTO_INNER_IMG_ELSE, "", cellStyleValue);
             setStyle(sheet, rowPhoto2,  CELL_STYLE.VALUE_TITLE_PHOTO_ETC_IMG_ELSE, "", cellStyleValue);
 
-            setStyleBg(sheet, rowPhotoTitle2,  CELL_STYLE.HEAD_TITLE_PHOTO_INNER_ELSE, "맨홀내부", cellStyleBg, creationHelper);
+            setStyleBg(sheet, rowPhotoTitle2,  CELL_STYLE.HEAD_TITLE_PHOTO_INNER_ELSE, "현장내부", cellStyleBg, creationHelper);
             setStyleBg(sheet, rowPhotoTitle2,  CELL_STYLE.HEAD_TITLE_PHOTO_ETC_ELSE, "특이사항", cellStyleBg, creationHelper);
 
             //특이사항
