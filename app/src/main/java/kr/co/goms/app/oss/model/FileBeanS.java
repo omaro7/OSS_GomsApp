@@ -3,22 +3,30 @@ package kr.co.goms.app.oss.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.File;
+
 public class FileBeanS implements Parcelable {
-    private String file_name;          //순번
-    private Long file_size;        //시험
+    private String file_name;
+    private Long file_size;
+    private File file;
 
     public FileBeanS(){
 
     }
 
-    protected FileBeanS(Parcel in) {
-        file_name = in.readString();
-        file_size = in.readLong();
+    public FileBeanS(String name, long length, File file) {
+        this.file_name = name;
+        this.file_size = length;
+        this.file = file;
     }
 
-    public FileBeanS(String name, long length) {
-        file_name = name;
-        file_size = length;
+    protected FileBeanS(Parcel in) {
+        file_name = in.readString();
+        if (in.readByte() == 0) {
+            file_size = null;
+        } else {
+            file_size = in.readLong();
+        }
     }
 
     @Override
@@ -63,5 +71,13 @@ public class FileBeanS implements Parcelable {
 
     public void setFile_size(Long file_size) {
         this.file_size = file_size;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
     }
 }

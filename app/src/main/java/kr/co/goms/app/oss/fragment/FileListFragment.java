@@ -1,6 +1,7 @@
 package kr.co.goms.app.oss.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
 import android.text.Editable;
@@ -21,6 +22,7 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -30,6 +32,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.airbnb.lottie.LottieAnimationView;
 
 import java.io.File;
+import java.io.InputStream;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -78,6 +82,8 @@ public class FileListFragment extends Fragment  implements View.OnClickListener 
     private ImageButton mInputClear;
 
     private ObserverInterface mDataObserver;
+
+    private static final String AUTHORITY = "kr.co.goms.app.oss.provider";
 
     public static FileListFragment getFragment(){
         FileListFragment fragment = new FileListFragment();
@@ -165,7 +171,7 @@ public class FileListFragment extends Fragment  implements View.OnClickListener 
                         String fileName = file.getName().toLowerCase();
                         // Check if the file name contains "oss" and is an Excel file
                         if (fileName.contains("oss") && hasExcelExtension(fileName, excelExtensions)) {
-                            excelFiles.add(new FileBeanS(file.getName(), file.length()));
+                            excelFiles.add(new FileBeanS(file.getName(), file.length(), file));
                         }
                     }
                 }
@@ -192,10 +198,6 @@ public class FileListFragment extends Fragment  implements View.OnClickListener 
                     }
                 });
             }
-
-            mRecyclerView.setVisibility(View.VISIBLE);
-            mLavNoData.setVisibility(View.GONE);
-
         }else{
             mRecyclerView.setVisibility(View.GONE);
             mLavNoData.setVisibility(View.VISIBLE);
@@ -216,9 +218,10 @@ public class FileListFragment extends Fragment  implements View.OnClickListener 
         Log.d(TAG, "setGroupList()");
         mAdapter = new FileListAdapter(getActivity(), placeList, new FileListAdapter.FileClickListener() {
             @Override
-            public void onFileClick(int position, FileBeanS groupBeanS) {
-                Log.d(TAG, "File 클릭 >>>> " + groupBeanS.getFile_name());
-
+            public void onFileClick(int position, FileBeanS fileBeanS) {
+                Log.d(TAG, "File 클릭 >>>> " + fileBeanS.getFile_name());
+                Uri uri = getUriFromFile(fileBeanS.getFile());
+                openExcelFile(uri);
             }
 
         });
@@ -271,5 +274,22 @@ public class FileListFragment extends Fragment  implements View.OnClickListener 
         }
     }
 
+    private void openExcelFile(Uri fileUri) {
+        if (fileUri != null) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(fileUri, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
+            // Check if an app is available to handle the intent
+            if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                startActivity(intent);
+            } else {
+                // Handle the case where no app can handle the intent
+                // Show a message to the user or open the file differently
+            }
+        }
+    }
+    private Uri getUriFromFile(File file) {
+        return FileProvider.getUriForFile(getActivity(), AUTHORITY, file);
+    }
 }
