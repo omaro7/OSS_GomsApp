@@ -20,6 +20,7 @@ import android.widget.ProgressBar;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -94,6 +95,10 @@ public class GroupListFragment extends Fragment  implements View.OnClickListener
 
         ImageView ivSetting = view.findViewById(R.id.iv_setting);
         ivSetting.setOnClickListener(this);
+
+        AppCompatButton btnExcelReport = view.findViewById(R.id.btn_excel_report);
+        btnExcelReport.setOnClickListener(this);
+
         mPbLoading = view.findViewById(R.id.pb_loader);
 
         mRecyclerView = view.findViewById(R.id.rv_group_list);
@@ -265,12 +270,10 @@ public class GroupListFragment extends Fragment  implements View.OnClickListener
         }else if(id == R.id.btn_ok) {
                 goDialog();
         }else if(id == R.id.iv_setting) {
-
-            //Intent intent = new Intent(getActivity(), SettingActivity.class);
-            //startActivity(intent);
-
+            Intent intent = new Intent(getActivity(), SettingActivity.class);
+            startActivity(intent);
+        }else if(id == R.id.btn_excel_report){
             ((MainActivity)getActivity()).changeFragment(FileListFragment.getFragment(), "fileList");
-
         }
     }
 

@@ -61,7 +61,22 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="16dp"
+                            android:visibility="gone"
                             android:background="@drawable/baseline_settings_black_24"/>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_excel_report"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginRight="16dp"
+                            android:background="@drawable/bg_round_bottomdialog_rightbtn"
+                            android:gravity="center"
+                            android:text="결과보고서"
+                            android:textColor="#ffffff"
+                            android:textSize="14dp" />
+
                     </RelativeLayout>
                 </androidx.appcompat.widget.Toolbar>
 
