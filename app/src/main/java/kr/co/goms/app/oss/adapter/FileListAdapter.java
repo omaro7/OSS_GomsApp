@@ -67,8 +67,9 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileHo
     @Override
     public void onBindViewHolder(final FileHolder holder, @SuppressLint("RecyclerView") final int position) {
         holder.tvFileName.setText(mFileList.get(position).getFile_name());
-        holder.tvFileSize.setText(mFileList.get(position).getFile_size() + " bytes");
 
+        double sizeInMB = mFileList.get(position).getFile_size() / (1024.0 * 1024.0);
+        holder.tvFileSize.setText(String.format("%.2fMB", sizeInMB));
 
         holder.tvFileName.setOnClickListener(new View.OnClickListener() {
             @Override

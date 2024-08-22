@@ -27,6 +27,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,6 +70,7 @@ public class FileListFragment extends Fragment  implements View.OnClickListener 
     private Filter mFilter;
 
     private ProgressBar mPbLoading;
+    private LottieAnimationView mLavNoData;
 
     private static final int SPAN_COUNT = 1 ;
 
@@ -99,10 +102,9 @@ public class FileListFragment extends Fragment  implements View.OnClickListener 
         ((CustomActivity) getActivity()).setSupportActionBar(mToolbar);
         Objects.requireNonNull(((CustomActivity) getActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
 
-        ImageView ivSetting = view.findViewById(R.id.iv_setting);
-        ivSetting.setOnClickListener(this);
         mPbLoading = view.findViewById(R.id.pb_loader);
-
+        mPbLoading.setVisibility(View.GONE);
+        mLavNoData = view.findViewById(R.id.lav_field_basic_list);
         mRecyclerView = view.findViewById(R.id.rv_file_list);
 
         //mLayoutManager = new GridLayoutManager(view.getContext(), SPAN_COUNT);
@@ -151,7 +153,7 @@ public class FileListFragment extends Fragment  implements View.OnClickListener 
     private void getExcelFileData(){
 
         String[] excelExtensions = {".xls", ".xlsx"};
-        String directoryPath = "/storage/emulated/0/Document";
+        String directoryPath = "/storage/emulated/0/Documents/Manhole/Excel";
         ArrayList<FileBeanS> excelFiles = new ArrayList<>();
         File directory = new File(directoryPath);
 
@@ -170,17 +172,33 @@ public class FileListFragment extends Fragment  implements View.OnClickListener 
             }
         }
 
-        //왜 화면로딩이 되지 않을까?? -> Thread 처리
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-            setFileList(excelFiles);
-        } else {
-            // WorkThread이면, MainThread에서 실행 되도록 변경.
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    setFileList(excelFiles);
-                }
-            });
+        int excelFileCnt = 0;
+        try{
+            excelFileCnt = excelFiles.size();
+        }catch(NullPointerException e){
+            excelFileCnt = 0;
+        }
+
+        if(excelFileCnt > 0) {
+            //왜 화면로딩이 되지 않을까?? -> Thread 처리
+            if (Looper.myLooper() == Looper.getMainLooper()) {
+                setFileList(excelFiles);
+            } else {
+                // WorkThread이면, MainThread에서 실행 되도록 변경.
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        setFileList(excelFiles);
+                    }
+                });
+            }
+
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mLavNoData.setVisibility(View.GONE);
+
+        }else{
+            mRecyclerView.setVisibility(View.GONE);
+            mLavNoData.setVisibility(View.VISIBLE);
         }
     }
 
@@ -205,8 +223,8 @@ public class FileListFragment extends Fragment  implements View.OnClickListener 
 
         });
 
-        ((GroupAdapter)mAdapter).setSearchType(GroupAdapter.SEARCH_TYPE.TITLE);    //장소명 검색조건
-        mFilter = ((GroupAdapter)mAdapter).getFilter();
+        ((FileListAdapter)mAdapter).setSearchType(FileListAdapter.SEARCH_TYPE.TITLE);    //장소명 검색조건
+        mFilter = ((FileListAdapter)mAdapter).getFilter();
 
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setVisibility(View.VISIBLE);
