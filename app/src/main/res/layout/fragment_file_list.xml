@@ -48,7 +48,7 @@
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
                         android:layout_alignParentLeft="true"
-                        android:text="엑셀 데이타"
+                        android:text="결과보고서"
                         android:textColor="@color/text_primary"
                         android:textSize="20dp"
                         android:fontFamily="@font/spoqahansansneobold"/>
